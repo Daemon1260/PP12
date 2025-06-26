@@ -95,6 +95,17 @@ In this exercise you will:
 1. **What steps are required to open an X11 window and receive events?**
 2. **How does the `Expose` event trigger your drawing code?**
 
+Aufgabe 1.1: -Verbindung mit dem Display aufbauen (XOpenDisplay)
+             -Fenster erstellen (XCreateSimpleWindow)
+             -Ereignisse abonnieren (XSelectInput)
+             -Fenster anzeigen (XMapWindow)
+             -Ereignisschleife starten und auf Events warten (XNextEvent)
+
+Aufgabe 1.2: -Immer wenn das Fenster neu gezeichnet werden muss (z. B. nach dem Minimieren), 
+              wird ein Expose-Event erzeugt. 
+             -In der Schleife wird dieses abgefragt und 
+              mit XDrawRectangle wird das Rechteck neu gezeichnet.
+
 ---
 
 ### Task 2: GTK+ 3 Application & Extension
@@ -154,6 +165,14 @@ In this exercise you will:
 
 1. **How does GTK’s signal-and-callback mechanism differ from X11’s event loop?**
 2. **Why use `pkg-config` when compiling GTK applications?**
+
+Aufgabe 2.1: -X11 arbeitet mit einer Low-Level Ereignisschleife, die Events wie Expose, KeyPress direkt behandelt.
+             -GTK+ verwendet ein Signal- und Callback-System, bei dem du z. B. Signale wie "clicked" an Widgets bindest.
+             -GTK übernimmt das Event-Handling intern und abstrahiert die X11-Komplexität.
+
+Aufgabe 2.2: -pkg-config liefert die richtigen Compiler- und Linker-Flags für GTK+:
+              "$(pkg-config --cflags --libs gtk+-3.0)"
+             -Es erspart dir, manuell Pfade und Bibliotheken wie -I/usr/include/gtk-3.0 oder -lgtk-3 zu setzen.
 
 ---
 
